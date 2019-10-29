@@ -1,0 +1,9 @@
+.lambda-build/
+.build/
+*.xcodeproj
+.DS_Store
+.terraform/
+.terraform.tfstate.lock.info
+terraform.tfstate
+terraform.tfstate.backup
+Build/*.zip

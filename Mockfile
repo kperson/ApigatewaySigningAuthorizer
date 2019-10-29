@@ -1,0 +1,13 @@
+sourceryCommand: null
+ApigatewaySigningAuthorizerTests:
+  sources:
+    include:
+    - ./Sources/ApigatewaySigningAuthorizer
+  output: ./Tests/ApigatewaySigningAuthorizerTests/Mock.generated.swift
+  targets:
+  - ApigatewaySigningAuthorizerTests
+  testable:
+  - ApigatewaySigningAuthorizer
+  import:
+  - Foundation
+  - NIO
