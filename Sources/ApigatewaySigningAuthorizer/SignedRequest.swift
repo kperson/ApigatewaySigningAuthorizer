@@ -8,11 +8,6 @@
 import Foundation
 import CryptoSwift
 
-extension Data {
-    var hexDescription: String {
-        return reduce("") {$0 + String(format: "%02x", $1)}
-    }
-}
 
 public struct SignedRequest: Equatable {
     
@@ -24,15 +19,6 @@ public struct SignedRequest: Equatable {
     
 }
 
-public class SignedHttpClient {
-    
-    public let baseURL: String
-    
-    public init(baseURL: String, apiKey: String, apiSecret: String) {
-        self.baseURL = baseURL
-    }
-
-}
 
 public extension SignedRequest {
     
@@ -103,9 +89,9 @@ public extension SignedRequest {
             "x-request-headers-to-sign",
             "x-request-signature"
         ]
+        
         let lowercaseHeaders = headers.map { (k, v) in (k.lowercased(), v) }
         let lowercaseHeadersDict = Dictionary(uniqueKeysWithValues: lowercaseHeaders)
-        
         let missingRequiredHeaders = requiredHeaders.map { lowercaseHeadersDict[$0] }.contains(nil)
         
         if missingRequiredHeaders {
@@ -118,7 +104,7 @@ public extension SignedRequest {
             return nil
         }
         
-        let maxRequestTime: TimeInterval = 180 //3 minutes
+        let maxRequestTime: TimeInterval = 60 //1 minute
         if let requestTimeHeader = lowercaseHeadersDict["x-request-time"],
             let requestTimeInterval = TimeInterval(requestTimeHeader) {
             if(abs(requestTimeInterval - Date().timeIntervalSince1970) > maxRequestTime) {
@@ -129,11 +115,8 @@ public extension SignedRequest {
             return nil
         }
     
-        
         let finalHeaders = Dictionary(uniqueKeysWithValues: headersToSign.map { ($0, lowercaseHeadersDict[$0]!) })
-        
         let req = SignedRequest(method: method, path: path, headers: finalHeaders, queryParams: queryParams, body: body)
-        
         
         if  let sentSignature = lowercaseHeadersDict["x-request-signature"],
             let requestId = lowercaseHeadersDict["x-request-id"] {
@@ -145,4 +128,12 @@ public extension SignedRequest {
         return nil
     }
     
+}
+
+extension Data {
+    
+    var hexDescription: String {
+        return reduce("") {$0 + String(format: "%02x", $1)}
+    }
+
 }
