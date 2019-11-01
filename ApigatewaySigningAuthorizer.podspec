@@ -11,4 +11,5 @@ Pod::Spec.new do |spec|
     spec.ios.deployment_target = '10.0'
     spec.watchos.deployment_target = '3.0'
     spec.dependency 'CryptoSwift', '~> 1.1'
+    spec.swift_version = '5.0'
   end
