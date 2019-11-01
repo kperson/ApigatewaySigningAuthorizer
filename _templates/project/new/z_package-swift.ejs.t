@@ -1,7 +1,7 @@
 ---
 to: Package.swift
 unless_exists: true
-sh: swift package generate-xcodeproj && swift test --generate-linuxmain
+sh: swiftymocky generate && swift test --generate-linuxmain
 ---
 // swift-tools-version:5.0.0
 import PackageDescription

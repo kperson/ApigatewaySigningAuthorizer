@@ -6,5 +6,6 @@ sh: cd Build && terraform fmt
 locals {
   env = {
     LOG_LEVEL = "WARN"
+    MODE      = "lambda"
   }
 }
