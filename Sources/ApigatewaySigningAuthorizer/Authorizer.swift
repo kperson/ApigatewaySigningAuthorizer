@@ -22,7 +22,8 @@ extension Dictionary where Key == String, Value == Any {
  
     func parseRequest(pathPrefix: String? = nil) -> SignedRequest? {
         if
-            let method = self["httpMethod"] as? String,
+            let requestContext = self["requestContext"] as? [String : Any],
+            let method = requestContext["httpMethod"] as? String,
             let relativePath = self["path"] as? String
         {
             let path = (pathPrefix ?? "") + relativePath

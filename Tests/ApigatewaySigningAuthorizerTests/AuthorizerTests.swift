@@ -16,7 +16,9 @@ class AuthorizerTests: XCTestCase {
     static let eventLoopGroup = MultiThreadedEventLoopGroup(numberOfThreads: System.coreCount)
 
     let reqDict: [String : Any] = [
-        "httpMethod": "GET",
+        "requestContext": [
+            "httpMethod": "GET"
+        ],
         "headers": ["k1": "v1"],
         "queryStringParameters": ["q2": "v2"],
         "path": "/hello-world"
@@ -42,7 +44,9 @@ class AuthorizerTests: XCTestCase {
         let awsApp = AWSApp()
         awsApp.addRequestAuthorizer(authorizer: m)
         let rs = try! awsApp.testCustomCall(name: "com.github.kperson.signing.request", payload: [
-            "httpMethod": "GET",
+            "requestContext": [
+                "httpMethod": "GET"
+            ],
             "headers": signed.headers,
             "queryStringParameters": ["q2": "v2"],
             "path": "/hello-world",
@@ -72,7 +76,9 @@ class AuthorizerTests: XCTestCase {
         let awsApp = AWSApp()
         awsApp.addRequestAuthorizer(authorizer: m)
         let rs = try! awsApp.testCustomCall(name: "com.github.kperson.signing.request", payload: [
-            "httpMethod": "GET",
+            "requestContext": [
+                "httpMethod": "GET"
+            ],
             "headers": signed.headers,
             "queryStringParameters": ["q2": "v2"],
             "path": "/hello-world",
@@ -102,7 +108,9 @@ class AuthorizerTests: XCTestCase {
         let awsApp = AWSApp()
         awsApp.addRequestAuthorizer(authorizer: m)
         let rs = try! awsApp.testCustomCall(name: "com.github.kperson.signing.request", payload: [
-            "httpMethod": "GET",
+            "requestContext": [
+                "httpMethod": "GET"
+            ],
             "headers": signed.headers,
             "queryStringParameters": ["q2": "v2"],
             "path": "/hello-world",
@@ -132,7 +140,9 @@ class AuthorizerTests: XCTestCase {
         let awsApp = AWSApp()
         awsApp.addRequestAuthorizer(authorizer: m)
         let rs = try! awsApp.testCustomCall(name: "com.github.kperson.signing.request", payload: [
-            "httpMethod": "GET",
+            "requestContext": [
+                "httpMethod": "GET"
+            ],
             "headers": signed.headers,
             "queryStringParameters": ["q2": "v2"],
             "path": "/hello-world",
