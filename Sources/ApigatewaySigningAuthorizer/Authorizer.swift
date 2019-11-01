@@ -10,23 +10,13 @@ import NIO
 import SwiftAWS
 
 //sourcery: AutoMockable
-protocol Authorizer {
+public protocol Authorizer {
     
     func fetchSecret(key: String) -> EventLoopFuture<String?>
     func markRequestIdSent(requestId: String) -> EventLoopFuture<Bool>
     
 }
 
-//class DynamoDBAuthorizer: Authorizer {
-//    
-//    func fetchRequestIdExist(requestId: String) -> EventLoopFuture<Bool> {
-//    }
-//    
-//    func markRequestIdSent(request: String) -> EventLoopFuture<Bool> {
-//    }
-//    
-//    
-//}
 
 extension Dictionary where Key == String, Value == Any {
  
@@ -50,16 +40,22 @@ extension Dictionary where Key == String, Value == Any {
     
 }
 
- extension AWSApp {
+ public extension AWSApp {
     
     
-    func addRequestAuthorizer(authorizer: Authorizer, pathPrefix: String? = nil) {
+    func addRequestAuthorizer(
+        authorizer: Authorizer,
+        pathPrefixResolver: @escaping ([String : Any]) -> String? = { _ in nil },
+        modifyResponse: ((SignedRequest, [String : Any]) -> EventLoopFuture<[String : Any]>)? = nil
+    ) {
         addCustom(name: "com.github.kperson.signing.request") { payload in
+            let pathPrefix = pathPrefixResolver(payload.data)
             if  let request = payload.data.parseRequest(pathPrefix: pathPrefix),
                 let apiKey = request.headers["x-request-api-key"],
                 let methodArn = payload.data["methodArn"] as? String
             {
-                return authorizer.fetchSecret(key: apiKey).map { secretOpt -> String? in
+            
+                let f = authorizer.fetchSecret(key: apiKey).map { secretOpt -> String? in
                     if let secret = secretOpt, let requestId = request.verifySignature(secret: secret) {
                         return requestId
                     }
@@ -73,6 +69,14 @@ extension Dictionary where Key == String, Value == Any {
                     }
                 }.map { isSuccessful in
                     AWSApp.authorizationResponse(isAuthorized: isSuccessful, methodArn: methodArn)
+                }
+                if let mod = modifyResponse {
+                    return f.then { res in
+                        return mod(request, res)
+                    }
+                }
+                else {
+                    return f
                 }
             }
             return payload.eventLoop.newSucceededFuture(result: AWSApp.authorizationResponse(isAuthorized: false, methodArn: "*"))
