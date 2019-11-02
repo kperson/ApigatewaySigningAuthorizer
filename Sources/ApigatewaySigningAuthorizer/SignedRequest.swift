@@ -17,6 +17,20 @@ public struct SignedRequest: Equatable {
     public let queryParams: [String : String]?
     public let body: Data?
     
+    public init(
+        method: String,
+        path: String,
+        headers: [String : String],
+        queryParams: [String : String]?,
+        body: Data?
+    ) {
+        self.method = method
+        self.path = path
+        self.headers = headers
+        self.queryParams = queryParams
+        self.body = body
+    }
+    
 }
 
 
