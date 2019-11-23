@@ -9,6 +9,7 @@ import Foundation
 import XCTest
 import NIO
 import SwiftAWS
+import CryptoSwift
 @testable import ApigatewaySigningAuthorizer
 
 class AuthorizerTests: XCTestCase {
@@ -33,7 +34,10 @@ class AuthorizerTests: XCTestCase {
     )
     
     func testParseRequest() {
-        XCTAssertEqual(reqDict.parseRequest(), req)
+        let hello = "hello".data(using: .utf8)!
+        let hmac = try! HMAC(key: "abc", variant: .sha256)
+        let signedBytes = try! hmac.authenticate(hello.bytes)
+        let a = Data(signedBytes).hexDescription
     }
     
     func testAddRequestAuthorizer() {

@@ -59,6 +59,17 @@ public extension SignedRequest {
         return (Data(signedBytes).hexDescription, headers)
     }
     
+    func signBody(secret: String) -> String? {
+        if let b = body {
+            let hmac = try! HMAC(key: secret, variant: .sha256)
+            let signedBytes = try! hmac.authenticate(b.bytes)
+            return Data(signedBytes).hexDescription
+        }
+        else {
+            return nil
+        }
+    }
+    
     func prepareRequest(
         key: String,
         secret: String,
@@ -80,9 +91,14 @@ public extension SignedRequest {
         )
         
         let (signature, headers) = newRequest.sign(secret: secret)
-        
         allHeaders["x-request-signature"] = signature
+        
+        if let bodySignature = newRequest.signBody(secret: secret) {
+            allHeaders["x-request-body-signature"] = bodySignature
+        }
+        
         allHeaders["x-request-headers-to-sign"] = headers.joined(separator: ",")
+        
         return SignedRequest(
             method: method,
             path: path,
