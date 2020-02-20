@@ -33,8 +33,8 @@
         "repositoryURL": "https://github.com/vapor/core.git",
         "state": {
           "branch": null,
-          "revision": "18f2436bf7a6bc2224372c0885db2e0159af1649",
-          "version": "3.9.2"
+          "revision": "10d33362a47fab03a067e78fb0791341d9c634fa",
+          "version": "3.9.3"
         }
       },
       {
@@ -78,8 +78,8 @@
         "repositoryURL": "https://github.com/vapor/http.git",
         "state": {
           "branch": null,
-          "revision": "3808ed0401379b6e9f4a053f03090ea9d658caa9",
-          "version": "3.2.1"
+          "revision": "fba1329cd430e2f9a3f995b317b04f268d8b2978",
+          "version": "3.3.2"
         }
       },
       {
@@ -132,8 +132,8 @@
         "repositoryURL": "https://github.com/JohnSundell/ShellOut.git",
         "state": {
           "branch": null,
-          "revision": "d3d54ce662dfee7fef619330b71d251b8d4869f9",
-          "version": "2.2.0"
+          "revision": "e1577acf2b6e90086d01a6d5e2b8efdaae033568",
+          "version": "2.3.0"
         }
       },
       {
@@ -150,7 +150,7 @@
         "repositoryURL": "https://github.com/kperson/swift-aws-lambda-adapter.git",
         "state": {
           "branch": "master",
-          "revision": "a324474b9e939d3ff2e6a4e1744d0fbd083bf3c9",
+          "revision": "c501d8e13575a8af07af293b1249960cbd453140",
           "version": null
         }
       },
@@ -159,7 +159,7 @@
         "repositoryURL": "https://github.com/kperson/swift-lambda-tools.git",
         "state": {
           "branch": "master",
-          "revision": "9760a15b18eb053fecdf92b264ae8a11ae58cc2f",
+          "revision": "065f195c10aba175e467b2cd6b03a9e443e615ed",
           "version": null
         }
       },
@@ -168,8 +168,8 @@
         "repositoryURL": "https://github.com/apple/swift-nio.git",
         "state": {
           "branch": null,
-          "revision": "ba7970fe396e8198b84c6c1b44b38a1d4e2eb6bd",
-          "version": "1.14.1"
+          "revision": "8da5c5a4e6c5084c296b9f39dc54f00be146e0fa",
+          "version": "1.14.2"
         }
       },
       {
@@ -231,8 +231,8 @@
         "repositoryURL": "https://github.com/vapor/url-encoded-form.git",
         "state": {
           "branch": null,
-          "revision": "82d8d63bdb76b6dd8febe916c639ab8608dbbaed",
-          "version": "1.0.6"
+          "revision": "44999b47d88ca2e0c0b893599b3240e342ba39ff",
+          "version": "1.0.7"
         }
       },
       {
@@ -249,8 +249,8 @@
         "repositoryURL": "https://github.com/vapor/vapor.git",
         "state": {
           "branch": null,
-          "revision": "92a58a9a84e4330500b99fe355a94d29f67abe58",
-          "version": "3.3.1"
+          "revision": "642f3d4d1f0eafad651c85524d0d1c698b55399f",
+          "version": "3.3.3"
         }
       },
       {
@@ -258,7 +258,7 @@
         "repositoryURL": "https://github.com/kperson/vapor-lambda-adapter.git",
         "state": {
           "branch": "master",
-          "revision": "d80bb6c28084834e2491a555cea3401e3d11f03e",
+          "revision": "e2906ac7cd07d8e22760b9e1fd3c2f564aa90863",
           "version": null
         }
       },
