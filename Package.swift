@@ -9,7 +9,6 @@ let package = Package(
     ],
     dependencies: [
         .package(url: "https://github.com/kperson/swift-lambda-tools.git", .branch("master")),
-        .package(url: "https://github.com/MakeAWishFoundation/SwiftyMocky", .upToNextMinor(from: "3.3.3")),
         .package(url: "https://github.com/krzyzanowskim/CryptoSwift.git", .upToNextMinor(from: "1.1.0")),
         .package(url: "https://github.com/vapor/vapor.git", .upToNextMinor(from: "3.3.0"))
     ],
@@ -37,8 +36,7 @@ let package = Package(
         .testTarget(
             name: "ApigatewaySigningAuthorizerTests",
             dependencies: [
-                "ApigatewaySigningAuthorizer",
-                "SwiftyMocky"
+                "ApigatewaySigningAuthorizer"
             ]
         )
     ]
