@@ -159,7 +159,7 @@
         "repositoryURL": "https://github.com/kperson/swift-lambda-tools.git",
         "state": {
           "branch": "master",
-          "revision": "cf87a49a6c3348c77867893dd07ff00575571007",
+          "revision": "ab3c4ab4e11e47a06db0ee5f6a956a742f418ccf",
           "version": null
         }
       },
@@ -257,7 +257,7 @@
         "package": "vapor-lambda-adapter",
         "repositoryURL": "https://github.com/kperson/vapor-lambda-adapter.git",
         "state": {
-          "branch": null,
+          "branch": "master",
           "revision": "f9c50553bb0a90829a3d073a78e73a6ad44fcab0",
           "version": null
         }
